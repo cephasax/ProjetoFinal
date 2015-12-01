@@ -14,18 +14,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name="SEQ_ESCOLHA", initialValue=1, allocationSize=1, sequenceName="seq_escolha")
+@SequenceGenerator(name = "SEQ_ESCOLHA", initialValue = 1, allocationSize = 1, sequenceName = "seq_escolha")
 public class Escolha implements Serializable {
 	private static final long serialVersionUID = -4079670000868709598L;
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ESCOLHA")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ESCOLHA")
 	private int idEscolha;
-	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="escolha_disciplina", 
-			joinColumns = @JoinColumn(name="id_disciplina"),
-			inverseJoinColumns = @JoinColumn(name="id_escolha"))
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "escolha_disciplina", joinColumns = @JoinColumn(name = "id_disciplina") , inverseJoinColumns = @JoinColumn(name = "id_escolha") )
 	private Collection<Escolha> escolhas;
 
 	public int getIdEscolha() {
@@ -43,7 +41,5 @@ public class Escolha implements Serializable {
 	public void setEscolhas(Collection<Escolha> escolhas) {
 		this.escolhas = escolhas;
 	}
-	
-	
-	
+
 }

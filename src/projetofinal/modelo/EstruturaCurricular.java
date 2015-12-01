@@ -16,25 +16,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name="SEQ_ESTRUTURACURRICULAR", initialValue=1, allocationSize=1, sequenceName="seq_estruturacurricular")
-public class EstruturaCurricular implements Serializable {	
+@SequenceGenerator(name = "SEQ_ESTRUTURACURRICULAR", initialValue = 1, allocationSize = 1, sequenceName = "seq_estruturacurricular")
+public class EstruturaCurricular implements Serializable {
 	private static final long serialVersionUID = -427632399345760954L;
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ESTRUTURACURRICULAR")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ESTRUTURACURRICULAR")
 	private int idEstruturaCurricular;
-		
-	@OneToMany(mappedBy="estruturaCurricular") 
+
+	@OneToMany(mappedBy = "estruturaCurricular")
 	private Collection<Pessoa> pessoas;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idCurso")
+	@JoinColumn(name = "idCurso")
 	private Curso curso;
-	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="estruturacurricular_disciplina", 
-			joinColumns = @JoinColumn(name="id_estruturacurricular"),
-			inverseJoinColumns = @JoinColumn(name="id_disciplina"))
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "estruturacurricular_disciplina", joinColumns = @JoinColumn(name = "id_estruturacurricular") , inverseJoinColumns = @JoinColumn(name = "id_disciplina") )
 	private Collection<Disciplina> disciplinas;
 
 	public int getIdEstruturaCurricular() {

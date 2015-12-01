@@ -15,34 +15,30 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name="SEQ_DISCIPLINA", initialValue=1, allocationSize=1, sequenceName="seq_disciplina")
+@SequenceGenerator(name = "SEQ_DISCIPLINA", initialValue = 1, allocationSize = 1, sequenceName = "seq_disciplina")
 public class Disciplina implements Serializable {
 	private static final long serialVersionUID = -1982314173258042136L;
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="SEQ_DISCIPLINA")
-    private int idDisciplina;
-	@Column(nullable=false)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DISCIPLINA")
+	private int idDisciplina;
+	@Column(nullable = false)
 	private String nomeDisciplina;
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int cargaHoraria;
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String codigo;
-	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="estruturacurricular_disciplina", 
-			joinColumns = @JoinColumn(name="id_disciplina"),
-			inverseJoinColumns = @JoinColumn(name="id_estruturacurricular"))
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "estruturacurricular_disciplina", joinColumns = @JoinColumn(name = "id_disciplina") , inverseJoinColumns = @JoinColumn(name = "id_estruturacurricular") )
 	private Collection<EstruturaCurricular> estruturascurriculares;
-	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="escolha_disciplina", 
-			joinColumns = @JoinColumn(name="id_escolha"),
-			inverseJoinColumns = @JoinColumn(name="id_disciplina"))
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "escolha_disciplina", joinColumns = @JoinColumn(name = "id_escolha") , inverseJoinColumns = @JoinColumn(name = "id_disciplina") )
 	private Collection<Disciplina> disciplinas;
-	
+
 	// * -> *
 	private Escolha escolha;
-	
+
 	public int getIdDisciplina() {
 		return idDisciplina;
 	}
@@ -86,15 +82,15 @@ public class Disciplina implements Serializable {
 	public int getCargaHoraria() {
 		return cargaHoraria;
 	}
-	
+
 	public void setCargaHoraria(int cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
 	}
-	
+
 	public String getCodigo() {
 		return codigo;
 	}
-	
+
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}

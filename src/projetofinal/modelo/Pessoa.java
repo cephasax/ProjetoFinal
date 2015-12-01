@@ -15,24 +15,24 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name="SEQ_PESSOA", initialValue=1, allocationSize=1, sequenceName="seq_pessoa")
+@SequenceGenerator(name = "SEQ_PESSOA", initialValue = 1, allocationSize = 1, sequenceName = "seq_pessoa")
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = -3379758744266283863L;
 	@Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_PESSOA")
-    private int idPessoa;
-	@Column(nullable=false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PESSOA")
+	private int idPessoa;
+	@Column(nullable = false)
 	private String nomePessoa;
 	private long matricula;
 	private String login;
 	private String senha;
-	
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_escolha")	
+	@JoinColumn(name = "id_escolha")
 	private Escolha escolha;
-	
-	@ManyToOne 
-	@JoinColumn(name="id_estruturaCurricular")
+
+	@ManyToOne
+	@JoinColumn(name = "id_estruturaCurricular")
 	private EstruturaCurricular estruturaCurricular;
 
 	public int getIdPessoa() {
@@ -90,6 +90,5 @@ public class Pessoa implements Serializable {
 	public void setEstruturaCurricular(EstruturaCurricular estruturaCurricular) {
 		this.estruturaCurricular = estruturaCurricular;
 	}
-	
-}
 
+}
